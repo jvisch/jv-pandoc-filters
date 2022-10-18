@@ -2,8 +2,8 @@ options += --number-sections
 options += --toc 
 options += --embed-resources --standalone
 
-options += --lua-filter=hallo-filter.lua
-options += --lua-filter=jv-add-date.lua
+options += --lua-filter=./filters/hallo-filter.lua
+options += --lua-filter=./filters/jv-add-date.lua
 
 
 input = example.md
