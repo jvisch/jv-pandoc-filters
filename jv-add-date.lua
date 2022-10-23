@@ -9,8 +9,9 @@
 function Meta(m)
     if m.date == nil then
         local format = "%c"
-        if m["dateformat-jv"] then
-            format = pandoc.utils.stringify(m["dateformat-jv"])
+        local temp = m["jv-dateformat"]
+        if temp then
+            format = pandoc.utils.stringify(temp)
         end
         m.date = os.date(format)
     end
