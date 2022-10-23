@@ -4,9 +4,7 @@ Deze repo bevat allemaal handige filter voor Pandoc. De filters zijn
 geschreven in Lua. Lua is embedded in Pandoc
 <https://pandoc.org/lua-filters.html> dus geen extra onderdelen nodig.
 
-## Filters
-
-### jv-add-date
+## jv-add-date
 
 Voegt een `date` toe aan de meta values als die niet is gedefinieerd.
 Dit is handig als je bijv. de datum (en tijd) op moment van creëren wil
@@ -41,3 +39,55 @@ of het formaat via de commandline meegeven:
         --output=output.pdf \
         --lua-filter=jv-add-date.lua \
         --metadata=jv-dateformat:"%d %B %G"
+
+## jv-remove-divs
+
+Verwijdert alle `div`-elementen met de gespecificeerde classes in
+meta-value `jv-remove-divs`. Erg handig om notities of antwoorden uit
+een document te verwijderen.
+
+Voorbeeld:
+
+    ---
+    author:
+    - jorgje
+    jv-dateformat: "%d %B %G"
+    jv-remove-divs:
+    - answer
+    - docent
+    title: voorbeeld md
+    ---
+
+    # dit is een kop1
+
+    ::: {.question .purt}
+    Hier staat de eerste vraag. 
+    :::
+
+    ::: answer
+    hier staat het antwoord op de eerste vraag
+    :::
+
+    ::: question
+    Dit is de tweede vraag.
+    :::
+
+    ::: {.answer .bonus}
+    dit is het antwoord op de tweede vraag
+    :::
+
+    ::: docent
+    hier staan docentnotities.
+    :::
+
+Aanroepen van pandoc:
+
+    pandoc input.md --lua-filter=jv-remove-divs.lua -o output.pdf
+
+Of via commandline
+
+    pandoc input.md \
+           --output=output.pdf \
+           --lua-filter=jv-remove-divs.lua \
+           --metadata=jv-remove-divs:docent \
+           --metadata=jv-remove-divs:answer
