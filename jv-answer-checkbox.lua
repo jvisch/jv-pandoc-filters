@@ -1,4 +1,4 @@
-print("---- jv-answer-checkbox ------------------------------")
+-- print("---- jv-answer-checkbox ------------------------------")
 -- if not FORMAT:match 'html' then
 --     print("!! jv-answer-checkbox can only be used on HTML output")
 -- end
