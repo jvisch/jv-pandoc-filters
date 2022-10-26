@@ -1,0 +1,26 @@
+/* verberg de checkbox */
+input[type=checkbox].answer {
+    display: none;
+}
+
+/* div met het antwoord */
+input[type=checkbox].answer+label+div.answer {
+    display: none;
+}
+
+input[type=checkbox].answer:checked+label+div.answer {
+    display: block;
+}
+
+/* -- label 'toon antwoord' of 'verberg antwoord' -- */
+label.answer {
+    font-style: italic;
+}
+
+input[type="checkbox"].answer+label.answer::before {
+    content: "toon ";
+}
+
+input[type="checkbox"].answer:checked+label.answer::before {
+    content: "verberg ";
+}
