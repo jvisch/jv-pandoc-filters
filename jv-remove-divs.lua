@@ -7,7 +7,9 @@ function GetDivsToRemove(m)
     local divs_ = m["jv-remove-divs"]
     if (divs_) then
         if (pandoc.utils.type(divs_) == 'string') then
-            table.insert(divs, divs_)
+            local temp = pandoc.utils.stringify(divs_)
+            temp = string.gsub(temp,' ', '')
+            table.insert(divs, temp)
         else
             for i, v in ipairs(divs_) do
                 table.insert(divs, pandoc.utils.stringify(v))
